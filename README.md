@@ -34,19 +34,19 @@
 Run the following command to install the package and automatically add the dependency to your composer.json file:
 
 ```php
-composer require "apimatictestttttt/testing-pack-sdk:3.4.4"
+composer require "apimatictestttttt/testing-pack-sdk:3.4.5"
 ```
 
 Or add it to the composer.json file manually as given below:
 
 ```php
 "require": {
-    "apimatictestttttt/testing-pack-sdk": "3.4.4"
+    "apimatictestttttt/testing-pack-sdk": "3.4.5"
 }
 ```
 
 You can also view the package at:
-https://packagist.org/packages/apimatictestttttt/testing-pack-sdk#3.4.4
+https://packagist.org/packages/apimatictestttttt/testing-pack-sdk#3.4.5
 
 ## Test the SDK
 
@@ -59,7 +59,7 @@ You can change the PHPUnit test configuration in the `phpunit.xml` file.
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -75,9 +75,9 @@ The following parameters are configurable for the API Client:
 | `retryOnTimeout` | `bool` | Whether to retry on request timeout.<br>*Default*: `true` |
 | `httpStatusCodesToRetry` | `array` | Http status codes to retry against.<br>*Default*: `408, 413, 429, 500, 502, 503, 504, 521, 522, 524` |
 | `httpMethodsToRetry` | `array` | Http methods to retry against.<br>*Default*: `'GET', 'PUT'` |
-| `apiTokenCredentials` | [`ApiTokenCredentials`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
-| `basicAuthCredentials` | [`BasicAuthCredentials`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
-| `csrfTokenCredentials` | [`CsrfTokenCredentials`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
+| `apiTokenCredentials` | [`ApiTokenCredentials`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
+| `basicAuthCredentials` | [`BasicAuthCredentials`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| `csrfTokenCredentials` | [`CsrfTokenCredentials`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
 
@@ -124,19 +124,19 @@ The SDK can be configured to use a different environment for making API calls. A
 
 This API uses the following authentication schemes.
 
-* [`apiToken (Custom Header Signature)`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/auth/custom-header-signature.md)
-* [`basicAuth (Basic Authentication)`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/auth/basic-authentication.md)
-* [`csrfToken (Custom Header Signature)`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/auth/custom-header-signature-1.md)
+* [`apiToken (Custom Header Signature)`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/auth/custom-header-signature.md)
+* [`basicAuth (Basic Authentication)`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/auth/basic-authentication.md)
+* [`csrfToken (Custom Header Signature)`](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/auth/custom-header-signature-1.md)
 
 ## List of APIs
 
-* [Orgs NAC Tags](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/controllers/orgs-nac-tags.md)
-* [Orgs NAC Portals](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/controllers/orgs-nac-portals.md)
+* [Orgs NAC Tags](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/controllers/orgs-nac-tags.md)
+* [Orgs NAC Portals](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/controllers/orgs-nac-portals.md)
 
 ## Classes Documentation
 
-* [Utility Classes](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/utility-classes.md)
-* [ApiException](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/api-exception.md)
-* [HttpRequest](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/http-request.md)
-* [HttpResponse](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.4/doc/http-response.md)
+* [Utility Classes](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/utility-classes.md)
+* [ApiException](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/api-exception.md)
+* [HttpRequest](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/http-request.md)
+* [HttpResponse](https://www.github.com/ZahraN444/testing-pack-php-sdk/tree/3.4.5/doc/http-response.md)
 
