@@ -30,6 +30,73 @@ class OrgsNACTagsControllerTest extends BaseTestController
         self::$controller = parent::getClient()->getOrgsNACTagsController();
     }
 
+    public function testListOrgNacTags()
+    {
+        // Parameters for the API call
+        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
+        $type = null;
+        $name = null;
+        $match = null;
+        $page = 1;
+        $limit = 100;
+
+        // Perform API call
+        $result = null;
+        try {
+            $result = self::$controller->listOrgNacTags($orgId, $type, $name, $match, $page, $limit);
+        } catch (Exceptions\ApiException $e) {
+        }
+
+        $headers = [];
+        $headers['Content-Type'] = ['application/json', true];
+
+        // Assert result with expected response
+        $this->newTestCase($result)->expectStatus(200)->allowExtraHeaders()->expectHeaders($headers)->assert();
+    }
+
+    public function testCreateOrgNacTag()
+    {
+        // Parameters for the API call
+        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
+        $body = null;
+
+        // Perform API call
+        $result = null;
+        try {
+            $result = self::$controller->createOrgNacTag($orgId, $body);
+        } catch (Exceptions\ApiException $e) {
+        }
+
+        $headers = [];
+        $headers['Content-Type'] = ['application/json', true];
+
+        // Assert result with expected response
+        $this->newTestCase($result)
+            ->expectStatus(200)
+            ->allowExtraHeaders()
+            ->expectHeaders($headers)
+            ->bodyMatcher(KeysBodyMatcher::init(TestParam::object(
+                '{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}'
+            )))
+            ->assert();
+    }
+
+    public function testDeleteOrgNacTag()
+    {
+        // Parameters for the API call
+        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
+        $nactagId = '000000ab-00ab-00ab-00ab-0000000000ab';
+
+        // Perform API call
+        try {
+            self::$controller->deleteOrgNacTag($orgId, $nactagId);
+        } catch (Exceptions\ApiException $e) {
+        }
+
+        // Assert result with expected response
+        $this->newTestCase(null)->expectStatus(200)->assert();
+    }
+
     public function testGetOrgNacTag()
     {
         // Parameters for the API call
@@ -57,46 +124,6 @@ class OrgsNACTagsControllerTest extends BaseTestController
             ->assert();
     }
 
-    public function testListOrgNacTags()
-    {
-        // Parameters for the API call
-        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
-        $type = null;
-        $name = null;
-        $match = null;
-        $page = 1;
-        $limit = 100;
-
-        // Perform API call
-        $result = null;
-        try {
-            $result = self::$controller->listOrgNacTags($orgId, $type, $name, $match, $page, $limit);
-        } catch (Exceptions\ApiException $e) {
-        }
-
-        $headers = [];
-        $headers['Content-Type'] = ['application/json', true];
-
-        // Assert result with expected response
-        $this->newTestCase($result)->expectStatus(200)->allowExtraHeaders()->expectHeaders($headers)->assert();
-    }
-
-    public function testDeleteOrgNacTag()
-    {
-        // Parameters for the API call
-        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
-        $nactagId = '000000ab-00ab-00ab-00ab-0000000000ab';
-
-        // Perform API call
-        try {
-            self::$controller->deleteOrgNacTag($orgId, $nactagId);
-        } catch (Exceptions\ApiException $e) {
-        }
-
-        // Assert result with expected response
-        $this->newTestCase(null)->expectStatus(200)->assert();
-    }
-
     public function testUpdateOrgNacTag()
     {
         // Parameters for the API call
@@ -108,33 +135,6 @@ class OrgsNACTagsControllerTest extends BaseTestController
         $result = null;
         try {
             $result = self::$controller->updateOrgNacTag($orgId, $nactagId, $body);
-        } catch (Exceptions\ApiException $e) {
-        }
-
-        $headers = [];
-        $headers['Content-Type'] = ['application/json', true];
-
-        // Assert result with expected response
-        $this->newTestCase($result)
-            ->expectStatus(200)
-            ->allowExtraHeaders()
-            ->expectHeaders($headers)
-            ->bodyMatcher(KeysBodyMatcher::init(TestParam::object(
-                '{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}'
-            )))
-            ->assert();
-    }
-
-    public function testCreateOrgNacTag()
-    {
-        // Parameters for the API call
-        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
-        $body = null;
-
-        // Perform API call
-        $result = null;
-        try {
-            $result = self::$controller->createOrgNacTag($orgId, $body);
         } catch (Exceptions\ApiException $e) {
         }
 

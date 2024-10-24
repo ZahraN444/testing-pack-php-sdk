@@ -28,46 +28,6 @@ use MistAPILib\Models\NacTag;
 class OrgsNACTagsController extends BaseController
 {
     /**
-     * Get Org NAC Tag
-     *
-     * @param string $orgId
-     * @param string $nactagId
-     *
-     * @return NacTag Response from the API call
-     *
-     * @throws ApiException Thrown if API call fails
-     */
-    public function getOrgNacTag(string $orgId, string $nactagId): NacTag
-    {
-        $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/api/v1/orgs/{org_id}/nactags/{nactag_id}')
-            ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
-            ->parameters(TemplateParam::init('org_id', $orgId), TemplateParam::init('nactag_id', $nactagId));
-
-        $_resHandler = $this->responseHandler()
-            ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNactags400ErrorException::class))
-            ->throwErrorOn('401', ErrorType::init('Unauthorized', ApiV1OrgsNactags401ErrorException::class))
-            ->throwErrorOn('403', ErrorType::init('Permission Denied', ApiV1OrgsNactags403ErrorException::class))
-            ->throwErrorOn(
-                '404',
-                ErrorType::init(
-                    'Not found. The API endpoint doesnâ€™t exist or resource doesnâ€™ t exist',
-                    ResponseHttp404Exception::class
-                )
-            )
-            ->throwErrorOn(
-                '429',
-                ErrorType::init(
-                    'Too Many Request. The API Token used for the request reached the 5000 API ' .
-                    'Calls per hour threshold',
-                    ApiV1OrgsNactags429ErrorException::class
-                )
-            )
-            ->type(NacTag::class);
-
-        return $this->execute($_reqBuilder, $_resHandler);
-    }
-
-    /**
      * Get List of Org NAC Tags
      *
      * @param string $orgId
@@ -125,6 +85,50 @@ class OrgsNACTagsController extends BaseController
     }
 
     /**
+     * Create Org NAC Tag
+     *
+     * @param string $orgId
+     * @param NacTag|null $body
+     *
+     * @return NacTag Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
+     */
+    public function createOrgNacTag(string $orgId, ?NacTag $body = null): NacTag
+    {
+        $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/api/v1/orgs/{org_id}/nactags')
+            ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
+            ->parameters(
+                TemplateParam::init('org_id', $orgId),
+                HeaderParam::init('Content-Type', 'application/json'),
+                BodyParam::init($body)
+            );
+
+        $_resHandler = $this->responseHandler()
+            ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNactags400ErrorException::class))
+            ->throwErrorOn('401', ErrorType::init('Unauthorized', ApiV1OrgsNactags401ErrorException::class))
+            ->throwErrorOn('403', ErrorType::init('Permission Denied', ApiV1OrgsNactags403ErrorException::class))
+            ->throwErrorOn(
+                '404',
+                ErrorType::init(
+                    'Not found. The API endpoint doesnâ€™t exist or resource doesnâ€™ t exist',
+                    ResponseHttp404Exception::class
+                )
+            )
+            ->throwErrorOn(
+                '429',
+                ErrorType::init(
+                    'Too Many Request. The API Token used for the request reached the 5000 API ' .
+                    'Calls per hour threshold',
+                    ApiV1OrgsNactags429ErrorException::class
+                )
+            )
+            ->type(NacTag::class);
+
+        return $this->execute($_reqBuilder, $_resHandler);
+    }
+
+    /**
      * Delete Org NAC Tag
      *
      * @param string $orgId
@@ -164,26 +168,20 @@ class OrgsNACTagsController extends BaseController
     }
 
     /**
-     * Update Org NAC Tag
+     * Get Org NAC Tag
      *
      * @param string $orgId
      * @param string $nactagId
-     * @param NacTag|null $body
      *
      * @return NacTag Response from the API call
      *
      * @throws ApiException Thrown if API call fails
      */
-    public function updateOrgNacTag(string $orgId, string $nactagId, ?NacTag $body = null): NacTag
+    public function getOrgNacTag(string $orgId, string $nactagId): NacTag
     {
-        $_reqBuilder = $this->requestBuilder(RequestMethod::PUT, '/api/v1/orgs/{org_id}/nactags/{nactag_id}')
+        $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/api/v1/orgs/{org_id}/nactags/{nactag_id}')
             ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
-            ->parameters(
-                TemplateParam::init('org_id', $orgId),
-                TemplateParam::init('nactag_id', $nactagId),
-                HeaderParam::init('Content-Type', 'application/json'),
-                BodyParam::init($body)
-            );
+            ->parameters(TemplateParam::init('org_id', $orgId), TemplateParam::init('nactag_id', $nactagId));
 
         $_resHandler = $this->responseHandler()
             ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNactags400ErrorException::class))
@@ -210,21 +208,23 @@ class OrgsNACTagsController extends BaseController
     }
 
     /**
-     * Create Org NAC Tag
+     * Update Org NAC Tag
      *
      * @param string $orgId
+     * @param string $nactagId
      * @param NacTag|null $body
      *
      * @return NacTag Response from the API call
      *
      * @throws ApiException Thrown if API call fails
      */
-    public function createOrgNacTag(string $orgId, ?NacTag $body = null): NacTag
+    public function updateOrgNacTag(string $orgId, string $nactagId, ?NacTag $body = null): NacTag
     {
-        $_reqBuilder = $this->requestBuilder(RequestMethod::POST, '/api/v1/orgs/{org_id}/nactags')
+        $_reqBuilder = $this->requestBuilder(RequestMethod::PUT, '/api/v1/orgs/{org_id}/nactags/{nactag_id}')
             ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
             ->parameters(
                 TemplateParam::init('org_id', $orgId),
+                TemplateParam::init('nactag_id', $nactagId),
                 HeaderParam::init('Content-Type', 'application/json'),
                 BodyParam::init($body)
             );

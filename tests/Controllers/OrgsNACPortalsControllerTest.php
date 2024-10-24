@@ -65,6 +65,56 @@ class OrgsNACPortalsControllerTest extends BaseTestController
             ->assert();
     }
 
+    public function testCreateOrgNacPortal()
+    {
+        // Parameters for the API call
+        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
+        $body = null;
+
+        // Perform API call
+        $result = null;
+        try {
+            $result = self::$controller->createOrgNacPortal($orgId, $body);
+        } catch (Exceptions\ApiException $e) {
+        }
+
+        $headers = [];
+        $headers['Content-Type'] = ['application/json', true];
+
+        // Assert result with expected response
+        $this->newTestCase($result)
+            ->expectStatus(200)
+            ->allowExtraHeaders()
+            ->expectHeaders($headers)
+            ->bodyMatcher(KeysBodyMatcher::init(TestParam::object(
+                '{"access_type":"wireless","cert_expire_time":365,"enable_telemetry":true,"expi' .
+                'ry_notification_time":2,"name":"get-wifi","notify_expiry":true,"ssid":"Corp","s' .
+                'so":{"idp_cert":"-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDow' .
+                'DQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----","idp_sign_algo":"sha256","idp_' .
+                'sso_url":"https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130","issue' .
+                'r":"https://app.onelogin.com/saml/metadata/138130","nameid_format":"email","sso' .
+                '_role_matching":[{"assigned":"user","match":"Student"}],"use_sso_role_for_cert"' .
+                ':true}}'
+            )))
+            ->assert();
+    }
+
+    public function testDeleteOrgNacPortal()
+    {
+        // Parameters for the API call
+        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
+        $nacportalId = '000000ab-00ab-00ab-00ab-0000000000ab';
+
+        // Perform API call
+        try {
+            self::$controller->deleteOrgNacPortal($orgId, $nacportalId);
+        } catch (Exceptions\ApiException $e) {
+        }
+
+        // Assert result with expected response
+        $this->newTestCase(null)->expectStatus(200)->assert();
+    }
+
     public function testGetOrgNacPortal()
     {
         // Parameters for the API call
@@ -134,56 +184,6 @@ class OrgsNACPortalsControllerTest extends BaseTestController
             ->assert();
     }
 
-    public function testCreateOrgNacPortal()
-    {
-        // Parameters for the API call
-        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
-        $body = null;
-
-        // Perform API call
-        $result = null;
-        try {
-            $result = self::$controller->createOrgNacPortal($orgId, $body);
-        } catch (Exceptions\ApiException $e) {
-        }
-
-        $headers = [];
-        $headers['Content-Type'] = ['application/json', true];
-
-        // Assert result with expected response
-        $this->newTestCase($result)
-            ->expectStatus(200)
-            ->allowExtraHeaders()
-            ->expectHeaders($headers)
-            ->bodyMatcher(KeysBodyMatcher::init(TestParam::object(
-                '{"access_type":"wireless","cert_expire_time":365,"enable_telemetry":true,"expi' .
-                'ry_notification_time":2,"name":"get-wifi","notify_expiry":true,"ssid":"Corp","s' .
-                'so":{"idp_cert":"-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDow' .
-                'DQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----","idp_sign_algo":"sha256","idp_' .
-                'sso_url":"https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130","issue' .
-                'r":"https://app.onelogin.com/saml/metadata/138130","nameid_format":"email","sso' .
-                '_role_matching":[{"assigned":"user","match":"Student"}],"use_sso_role_for_cert"' .
-                ':true}}'
-            )))
-            ->assert();
-    }
-
-    public function testDeleteOrgNacPortal()
-    {
-        // Parameters for the API call
-        $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
-        $nacportalId = '000000ab-00ab-00ab-00ab-0000000000ab';
-
-        // Perform API call
-        try {
-            self::$controller->deleteOrgNacPortal($orgId, $nacportalId);
-        } catch (Exceptions\ApiException $e) {
-        }
-
-        // Assert result with expected response
-        $this->newTestCase(null)->expectStatus(200)->assert();
-    }
-
     public function testListOrgNacPortalSsoLatestFailures()
     {
         // Parameters for the API call
@@ -224,16 +224,15 @@ class OrgsNACPortalsControllerTest extends BaseTestController
             ->assert();
     }
 
-    public function testUpdateOrgNacPortalTempalte()
+    public function testDeleteOrgNacPortalImage()
     {
         // Parameters for the API call
         $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
         $nacportalId = '000000ab-00ab-00ab-00ab-0000000000ab';
-        $body = null;
 
         // Perform API call
         try {
-            self::$controller->updateOrgNacPortalTempalte($orgId, $nacportalId, $body);
+            self::$controller->deleteOrgNacPortalImage($orgId, $nacportalId);
         } catch (Exceptions\ApiException $e) {
         }
 
@@ -259,15 +258,16 @@ class OrgsNACPortalsControllerTest extends BaseTestController
         $this->newTestCase(null)->expectStatus(200)->assert();
     }
 
-    public function testDeleteOrgNacPortalImage()
+    public function testUpdateOrgNacPortalTempalte()
     {
         // Parameters for the API call
         $orgId = '000000ab-00ab-00ab-00ab-0000000000ab';
         $nacportalId = '000000ab-00ab-00ab-00ab-0000000000ab';
+        $body = null;
 
         // Perform API call
         try {
-            self::$controller->deleteOrgNacPortalImage($orgId, $nacportalId);
+            self::$controller->updateOrgNacPortalTempalte($orgId, $nacportalId, $body);
         } catch (Exceptions\ApiException $e) {
         }
 

@@ -92,98 +92,6 @@ class OrgsNACPortalsController extends BaseController
     }
 
     /**
-     * Get Org NAC Portal
-     *
-     * @param string $orgId
-     * @param string $nacportalId
-     *
-     * @return NacPortal Response from the API call
-     *
-     * @throws ApiException Thrown if API call fails
-     */
-    public function getOrgNacPortal(string $orgId, string $nacportalId): NacPortal
-    {
-        $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}')
-            ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
-            ->parameters(TemplateParam::init('org_id', $orgId), TemplateParam::init('nacportal_id', $nacportalId));
-
-        $_resHandler = $this->responseHandler()
-            ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNacportals400ErrorException::class))
-            ->throwErrorOn('401', ErrorType::init('Unauthorized', ApiV1OrgsNacportals401ErrorException::class))
-            ->throwErrorOn(
-                '403',
-                ErrorType::init('Permission Denied', ApiV1OrgsNacportals403ErrorException::class)
-            )
-            ->throwErrorOn(
-                '404',
-                ErrorType::init(
-                    'Not found. The API endpoint doesnâ€™t exist or resource doesnâ€™ t exist',
-                    ResponseHttp404Exception::class
-                )
-            )
-            ->throwErrorOn(
-                '429',
-                ErrorType::init(
-                    'Too Many Request. The API Token used for the request reached the 5000 API ' .
-                    'Calls per hour threshold',
-                    ApiV1OrgsNacportals429ErrorException::class
-                )
-            )
-            ->type(NacPortal::class);
-
-        return $this->execute($_reqBuilder, $_resHandler);
-    }
-
-    /**
-     * Update Org NAC Portal
-     *
-     * @param string $orgId
-     * @param string $nacportalId
-     * @param NacPortal|null $body
-     *
-     * @return NacPortal Response from the API call
-     *
-     * @throws ApiException Thrown if API call fails
-     */
-    public function updateOrgNacPortal(string $orgId, string $nacportalId, ?NacPortal $body = null): NacPortal
-    {
-        $_reqBuilder = $this->requestBuilder(RequestMethod::PUT, '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}')
-            ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
-            ->parameters(
-                TemplateParam::init('org_id', $orgId),
-                TemplateParam::init('nacportal_id', $nacportalId),
-                HeaderParam::init('Content-Type', 'application/json'),
-                BodyParam::init($body)
-            );
-
-        $_resHandler = $this->responseHandler()
-            ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNacportals400ErrorException::class))
-            ->throwErrorOn('401', ErrorType::init('Unauthorized', ApiV1OrgsNacportals401ErrorException::class))
-            ->throwErrorOn(
-                '403',
-                ErrorType::init('Permission Denied', ApiV1OrgsNacportals403ErrorException::class)
-            )
-            ->throwErrorOn(
-                '404',
-                ErrorType::init(
-                    'Not found. The API endpoint doesnâ€™t exist or resource doesnâ€™ t exist',
-                    ResponseHttp404Exception::class
-                )
-            )
-            ->throwErrorOn(
-                '429',
-                ErrorType::init(
-                    'Too Many Request. The API Token used for the request reached the 5000 API ' .
-                    'Calls per hour threshold',
-                    ApiV1OrgsNacportals429ErrorException::class
-                )
-            )
-            ->type(NacPortal::class);
-
-        return $this->execute($_reqBuilder, $_resHandler);
-    }
-
-    /**
      * Create Org NAC Portal
      *
      * @param string $orgId
@@ -276,6 +184,98 @@ class OrgsNACPortalsController extends BaseController
     }
 
     /**
+     * Get Org NAC Portal
+     *
+     * @param string $orgId
+     * @param string $nacportalId
+     *
+     * @return NacPortal Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
+     */
+    public function getOrgNacPortal(string $orgId, string $nacportalId): NacPortal
+    {
+        $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}')
+            ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
+            ->parameters(TemplateParam::init('org_id', $orgId), TemplateParam::init('nacportal_id', $nacportalId));
+
+        $_resHandler = $this->responseHandler()
+            ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNacportals400ErrorException::class))
+            ->throwErrorOn('401', ErrorType::init('Unauthorized', ApiV1OrgsNacportals401ErrorException::class))
+            ->throwErrorOn(
+                '403',
+                ErrorType::init('Permission Denied', ApiV1OrgsNacportals403ErrorException::class)
+            )
+            ->throwErrorOn(
+                '404',
+                ErrorType::init(
+                    'Not found. The API endpoint doesnâ€™t exist or resource doesnâ€™ t exist',
+                    ResponseHttp404Exception::class
+                )
+            )
+            ->throwErrorOn(
+                '429',
+                ErrorType::init(
+                    'Too Many Request. The API Token used for the request reached the 5000 API ' .
+                    'Calls per hour threshold',
+                    ApiV1OrgsNacportals429ErrorException::class
+                )
+            )
+            ->type(NacPortal::class);
+
+        return $this->execute($_reqBuilder, $_resHandler);
+    }
+
+    /**
+     * Update Org NAC Portal
+     *
+     * @param string $orgId
+     * @param string $nacportalId
+     * @param NacPortal|null $body
+     *
+     * @return NacPortal Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
+     */
+    public function updateOrgNacPortal(string $orgId, string $nacportalId, ?NacPortal $body = null): NacPortal
+    {
+        $_reqBuilder = $this->requestBuilder(RequestMethod::PUT, '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}')
+            ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
+            ->parameters(
+                TemplateParam::init('org_id', $orgId),
+                TemplateParam::init('nacportal_id', $nacportalId),
+                HeaderParam::init('Content-Type', 'application/json'),
+                BodyParam::init($body)
+            );
+
+        $_resHandler = $this->responseHandler()
+            ->throwErrorOn('400', ErrorType::init('Bad Syntax', ApiV1OrgsNacportals400ErrorException::class))
+            ->throwErrorOn('401', ErrorType::init('Unauthorized', ApiV1OrgsNacportals401ErrorException::class))
+            ->throwErrorOn(
+                '403',
+                ErrorType::init('Permission Denied', ApiV1OrgsNacportals403ErrorException::class)
+            )
+            ->throwErrorOn(
+                '404',
+                ErrorType::init(
+                    'Not found. The API endpoint doesnâ€™t exist or resource doesnâ€™ t exist',
+                    ResponseHttp404Exception::class
+                )
+            )
+            ->throwErrorOn(
+                '429',
+                ErrorType::init(
+                    'Too Many Request. The API Token used for the request reached the 5000 API ' .
+                    'Calls per hour threshold',
+                    ApiV1OrgsNacportals429ErrorException::class
+                )
+            )
+            ->type(NacPortal::class);
+
+        return $this->execute($_reqBuilder, $_resHandler);
+    }
+
+    /**
      * Get List of Org NAC Portal SSO Latest Failures
      *
      * @param string $orgId
@@ -350,45 +350,39 @@ class OrgsNACPortalsController extends BaseController
     }
 
     /**
-     * Update Org NAC Portal Template
+     * Delete background image for NAC Portal
+     *
+     *
+     * If image is not uploaded or is deleted, NAC Portal will use default image.
      *
      * @param string $orgId
      * @param string $nacportalId
-     * @param NacPortalTemplate|null $body
      *
      * @return void Response from the API call
      *
      * @throws ApiException Thrown if API call fails
      */
-    public function updateOrgNacPortalTempalte(
-        string $orgId,
-        string $nacportalId,
-        ?NacPortalTemplate $body = null
-    ): void {
+    public function deleteOrgNacPortalImage(string $orgId, string $nacportalId): void
+    {
         $_reqBuilder = $this->requestBuilder(
-            RequestMethod::PUT,
-            '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}/portal_template'
+            RequestMethod::DELETE,
+            '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}/portal_image'
         )
             ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
-            ->parameters(
-                TemplateParam::init('org_id', $orgId),
-                TemplateParam::init('nacportal_id', $nacportalId),
-                HeaderParam::init('Content-Type', 'application/json'),
-                BodyParam::init($body)
-            );
+            ->parameters(TemplateParam::init('org_id', $orgId), TemplateParam::init('nacportal_id', $nacportalId));
 
         $_resHandler = $this->responseHandler()
             ->throwErrorOn(
                 '400',
-                ErrorType::init('Bad Syntax', ApiV1OrgsNacportalsPortalTemplate400ErrorException::class)
+                ErrorType::init('Bad Syntax', ApiV1OrgsNacportalsPortalImage400ErrorException::class)
             )
             ->throwErrorOn(
                 '401',
-                ErrorType::init('Unauthorized', ApiV1OrgsNacportalsPortalTemplate401ErrorException::class)
+                ErrorType::init('Unauthorized', ApiV1OrgsNacportalsPortalImage401ErrorException::class)
             )
             ->throwErrorOn(
                 '403',
-                ErrorType::init('Permission Denied', ApiV1OrgsNacportalsPortalTemplate403ErrorException::class)
+                ErrorType::init('Permission Denied', ApiV1OrgsNacportalsPortalImage403ErrorException::class)
             )
             ->throwErrorOn(
                 '404',
@@ -402,7 +396,7 @@ class OrgsNACPortalsController extends BaseController
                 ErrorType::init(
                     'Too Many Request. The API Token used for the request reached the 5000 API ' .
                     'Calls per hour threshold',
-                    ApiV1OrgsNacportalsPortalTemplate429ErrorException::class
+                    ApiV1OrgsNacportalsPortalImage429ErrorException::class
                 )
             );
 
@@ -472,39 +466,45 @@ class OrgsNACPortalsController extends BaseController
     }
 
     /**
-     * Delete background image for NAC Portal
-     *
-     *
-     * If image is not uploaded or is deleted, NAC Portal will use default image.
+     * Update Org NAC Portal Template
      *
      * @param string $orgId
      * @param string $nacportalId
+     * @param NacPortalTemplate|null $body
      *
      * @return void Response from the API call
      *
      * @throws ApiException Thrown if API call fails
      */
-    public function deleteOrgNacPortalImage(string $orgId, string $nacportalId): void
-    {
+    public function updateOrgNacPortalTempalte(
+        string $orgId,
+        string $nacportalId,
+        ?NacPortalTemplate $body = null
+    ): void {
         $_reqBuilder = $this->requestBuilder(
-            RequestMethod::DELETE,
-            '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}/portal_image'
+            RequestMethod::PUT,
+            '/api/v1/orgs/{org_id}/nacportals/{nacportal_id}/portal_template'
         )
             ->auth('apiToken', 'basicAuth', Auth::and('basicAuth', 'csrfToken'))
-            ->parameters(TemplateParam::init('org_id', $orgId), TemplateParam::init('nacportal_id', $nacportalId));
+            ->parameters(
+                TemplateParam::init('org_id', $orgId),
+                TemplateParam::init('nacportal_id', $nacportalId),
+                HeaderParam::init('Content-Type', 'application/json'),
+                BodyParam::init($body)
+            );
 
         $_resHandler = $this->responseHandler()
             ->throwErrorOn(
                 '400',
-                ErrorType::init('Bad Syntax', ApiV1OrgsNacportalsPortalImage400ErrorException::class)
+                ErrorType::init('Bad Syntax', ApiV1OrgsNacportalsPortalTemplate400ErrorException::class)
             )
             ->throwErrorOn(
                 '401',
-                ErrorType::init('Unauthorized', ApiV1OrgsNacportalsPortalImage401ErrorException::class)
+                ErrorType::init('Unauthorized', ApiV1OrgsNacportalsPortalTemplate401ErrorException::class)
             )
             ->throwErrorOn(
                 '403',
-                ErrorType::init('Permission Denied', ApiV1OrgsNacportalsPortalImage403ErrorException::class)
+                ErrorType::init('Permission Denied', ApiV1OrgsNacportalsPortalTemplate403ErrorException::class)
             )
             ->throwErrorOn(
                 '404',
@@ -518,7 +518,7 @@ class OrgsNACPortalsController extends BaseController
                 ErrorType::init(
                     'Too Many Request. The API Token used for the request reached the 5000 API ' .
                     'Calls per hour threshold',
-                    ApiV1OrgsNacportalsPortalImage429ErrorException::class
+                    ApiV1OrgsNacportalsPortalTemplate429ErrorException::class
                 )
             );
 
